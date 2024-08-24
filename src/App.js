@@ -17,7 +17,10 @@ const Calculator = () => {
 
   const handleCalculate = () => {
     try {
-      setResult(eval(input)); // Note: eval can be dangerous; use a proper parser for production
+      const code =`return ${input}`;
+      const func = new Function(code);
+      const FuncObj=func();
+      setResult(FuncObj); // Note: eval can be dangerous; use a proper parser for production
     } catch (error) {
       setResult('Error');
     }
@@ -28,7 +31,7 @@ const Calculator = () => {
       <h2>React Calculator</h2>
       <div className="display">
         
-        <div className="input">{input}</div>
+        <input type="text" className="input" value={input}></input>
         <div className="result">{result}</div>
       </div>
       <div className="buttons">
