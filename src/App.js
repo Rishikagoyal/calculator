@@ -15,12 +15,22 @@ const Calculator = () => {
     setResult('');
   };
 
+
   const handleCalculate = () => {
+
+    if(input==='')
+    {
+      setResult('Error');
+      return;
+    }
+  
     try {
+      
       const code =`return ${input}`;
       const func = new Function(code);
       const FuncObj=func();
-      setResult(FuncObj); // Note: eval can be dangerous; use a proper parser for production
+      setResult(FuncObj);
+     // Note: eval can be dangerous; use a proper parser for production
     } catch (error) {
       setResult('Error');
     }
